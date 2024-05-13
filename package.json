@@ -1,0 +1,11 @@
+{
+  "name": "markov",
+  "version": "1.0.0",
+  "description": "using node to create a markov machine",
+  "main": "makeText.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tyler-skidmore",
+  "license": "ISC"
+}
