@@ -56,9 +56,13 @@ class MarkovMachine {
   }
 }
 
-let mm = new MarkovMachine("The quick brown fox jumps over the lazy dog");
-console.log(mm.makeChains());
-console.log(mm.makeText());
+// let mm = new MarkovMachine("The quick brown fox jumps over the lazy dog");
+// console.log(mm);
+// console.log(mm.makeText());
+
+let nn = new MarkovMachine("the cat in the hat is in the hat");
+console.log(nn);
+console.log(nn.makeText());
 
 module.exports = {
   MarkovMachine,
