@@ -17,30 +17,49 @@ class MarkovMachine {
    *  {"the": ["cat", "hat"], "cat": ["in"], "in": ["the"], "hat": [null]} */
 
   makeChains() {
-    this.chains = {};
+    let chains = new Map();
 
-    for(let i = 0; i < this.words.length - 1; i++) {
-      const word = this.words[i];
-      const nextWord = this.words[i + 1];
+    for (let i = 0; i < this.words.length; i += 1) {
+      let word = this.words[i];
+      let nextWord = this.words[i + 1] || null;
 
-      if(this.chains[word]) {
-        this.chains[word].push(nextWord);
-      } else {
-        this.chains[word] = [nextWord];
-      }
-    };
+      if (chains.has(word)) chains.get(word).push(nextWord);
+      else chains.set(word, [nextWord]);
+    }
 
-    const lastWord = this.words[this.words.length - 1];
-    this.chains[lastWord] = [null];
-  };
+    this.chains = chains;
+  }
+
+
+  /** Pick random choice from array */
+
+  static choice(ar) {
+    return ar[Math.floor(Math.random() * ar.length)];
+  }
 
 
   /** return random text from chains */
 
   makeText(numWords = 100) {
-    // TODO
+    // pick a random key to begin
+    let keys = Array.from(this.chains.keys());
+    let key = MarkovMachine.choice(keys);
+    let out = [];
+
+    // produce markov chain until reaching termination word
+    while (out.length < numWords && key !== null) {
+      out.push(key);
+      key = MarkovMachine.choice(this.chains.get(key));
+    }
+
+    return out.join(" ");
   }
 }
 
 let mm = new MarkovMachine("The quick brown fox jumps over the lazy dog");
-console.log(mm);
+console.log(mm.makeChains());
+console.log(mm.makeText());
+
+module.exports = {
+  MarkovMachine,
+};
