@@ -60,9 +60,9 @@ class MarkovMachine {
 // console.log(mm);
 // console.log(mm.makeText());
 
-let nn = new MarkovMachine("the cat in the hat is in the hat");
-console.log(nn);
-console.log(nn.makeText());
+// let nn = new MarkovMachine("the cat in the hat is in the hat");
+// console.log(nn);
+// console.log(nn.makeText());
 
 module.exports = {
   MarkovMachine,
